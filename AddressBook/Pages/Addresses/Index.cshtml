@@ -1,0 +1,66 @@
+﻿@page
+@model AddressBook.Pages.Addresses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Search</h1>
+
+<p>
+    <a asp-page="Create">Create New Entry</a>
+</p>
+
+<form>
+    <p>
+
+
+        Search Address Book: <input type="text" asp-for="SearchName" asp-for="SearchLastName" />
+        <input type="submit" value="Search" />
+
+        
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Telephone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Users) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
